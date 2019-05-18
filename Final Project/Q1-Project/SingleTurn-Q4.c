@@ -1,16 +1,13 @@
-#include "HeaderGeneral.h"
+
+// #include "HeaderAuxiliary.h"
+#include "HeaderTurn.h"
 
 /* ----------------------------- Static Function Declarations ----------------------------- */
-
 static void updateBoardWithBestTurn(Board board, Player player, SingleSourceMovesList* SSMList);
 static void printUnitMovement(MultipleSourceMovesListCell *maxCapturesCell);
-
-static void comparePositionsOfNoCaptureCells(MultipleSourceMovesListCell **currCell, MultipleSourceMovesListCell **maxCapturesCell);
+static void comparePositionsOfNoCaptureCells(MultipleSourceMovesListCell **currCell, MultipleSourceMovesListCell **maxCapturesCell, MultipleSourceMovesListCell **maxPrev, MultipleSourceMovesListCell *currPrev);
 static void updateStartAndEndPositions(checkersPos *startPos, checkersPos *endPos, SingleSourceMovesList* SSMList);
 static void checkMovement(checkersPos* startPos, checkersPos* endPos, BOOL* cellUnitMoved);
-
-
-
 static void eraseUnitStartPosition(Board board, SingleSourceMovesList* SSMList);
 static void placeUnitEndPosition(Board board, Player player, SingleSourceMovesList* SSMList);
 static void eraseCapturedUnits(Board board, Player player, SingleSourceMovesList* SSMList);
@@ -19,14 +16,15 @@ static void updatePositions(char* currRow, char* currCol, char* nextRow, char* n
 static int updateHorDir(char currCol, char nextCol);
 
 
-
-
 /* ----------------------------- Function Implementations ----------------------------- */
-
 void Turn(Board board, Player player)
 {
-	MultipleSourceMovesList* lstOfMoves = FindAllPossiblePlayerMoves(board, player);
-	MultipleSourceMovesListCell *maxCapturesCell, *currCell;
+	MultipleSourceMovesList* lstOfMoves;
+	MultipleSourceMovesListCell *maxCapturesCell, *currCell, *maxPrev, *currPrev;	//	track the prev so we can easily remove from list later on
+
+	lstOfMoves = FindAllPossiblePlayerMoves(board, player);
+	/* First we find all the possible moves.
+	After that we determine which of all the possible moves is the best (most captures). */
 
 	if (!lstOfMoves)
 	{
@@ -35,30 +33,36 @@ void Turn(Board board, Player player)
 	}
 
 	maxCapturesCell = currCell = lstOfMoves->head;
+	maxPrev = currPrev = NULL;
 
-	while (currCell)	//	while there is a next
+	while (currCell)
 	{
 		// Compare capture values in current cell and the max capture cell so far:
 		if (currCell->single_source_moves_list->tail->captures > maxCapturesCell->single_source_moves_list->tail->captures)		//	curr cell has higher capture value => switch the pointer to it
 			maxCapturesCell = currCell;
 		else if (currCell->single_source_moves_list->tail->captures == maxCapturesCell->single_source_moves_list->tail->captures)
 		/* Equal amounts of capture => we check if the cells involve regular movement, or remain in place. */
-			comparePositionsOfNoCaptureCells(&currCell, &maxCapturesCell);
+			comparePositionsOfNoCaptureCells(&currCell, &maxCapturesCell, &maxPrev, currPrev);
 
+		currPrev = currCell;
 		currCell = currCell->next;
 	}   //  continue until list is over
 
 	printUnitMovement(maxCapturesCell);
 	updateBoardWithBestTurn(board, player, maxCapturesCell->single_source_moves_list);
+	freeMSMList(lstOfMoves);
 }//Turn
 
 
-static void comparePositionsOfNoCaptureCells(MultipleSourceMovesListCell **currCell, MultipleSourceMovesListCell **maxCapturesCell)
+ /* --------- Static Functions --------- */
+static void comparePositionsOfNoCaptureCells(MultipleSourceMovesListCell **currCell, MultipleSourceMovesListCell **maxCapturesCell, MultipleSourceMovesListCell **maxPrev, MultipleSourceMovesListCell *currPrev)
 /* We reach this function upon having two cells with no captures. This could mean:
 	-	One or both can't move at all.
 	-	One or both made regular move.
 We need to determine if one moved, both moved or none at all.
 If both made a regular move, we randomize where to place the maxCapturesCell pointer.
+
+We keep track of prev so we can easily release the list pointed at by max after using it.
 */
 {
 	BOOL currCellUnitMoved = FALSE, maxCellUnitMoved = FALSE;
@@ -75,10 +79,16 @@ If both made a regular move, we randomize where to place the maxCapturesCell poi
 		/* Both units moved (meaning, performed regular move in this context) => we randomize to place the max pointer. */
 	{
 		if (rand() % 2 == 0)
+		{
 			*maxCapturesCell = *currCell;
+			*maxPrev = currPrev;
+		}
 	}
 	else if (currCellUnitMoved && !maxCellUnitMoved)
+	{
 		*maxCapturesCell = *currCell;
+		*maxPrev = currPrev;
+	}
 }//comparePositionsOfNoCaptureCells
 
 static void updateStartAndEndPositions(checkersPos *startPos, checkersPos *endPos, SingleSourceMovesList* SSMList)
@@ -122,9 +132,6 @@ static void updateBoardWithBestTurn(Board board, Player player, SingleSourceMove
 		eraseCapturedUnits(board, player, SSMList);
 }
 
-
-
-
 static void eraseUnitStartPosition(Board board, SingleSourceMovesList* SSMList)
 {
 	// Copy to variables for readability and comfort:
@@ -144,7 +151,6 @@ static void placeUnitEndPosition(Board board, Player player, SingleSourceMovesLi
 	// Go to that position in the board and place PLAYER there:
 	board[row - 'A'][col - '1'] = player;
 }//placeUnitEndPosition
-
 
 static void eraseCapturedUnits(Board board, Player player, SingleSourceMovesList* SSMList)
 {
@@ -170,7 +176,6 @@ static void eraseCapturedUnits(Board board, Player player, SingleSourceMovesList
 	}
 
 }//eraseCapturedUnits
-
 
 static int determineVerDir(Player player)
 // VerDir => vertical direction, up or down based on player

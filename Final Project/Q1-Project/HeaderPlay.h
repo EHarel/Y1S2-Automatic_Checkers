@@ -1,15 +1,15 @@
 #pragma once
 
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include <stdio.h>
-#include "HeaderGeneral.h"
+#include "HeaderTurn.h"
 
 #define MAX_SIZE 30
 
 
 /* ----------------------------- Function Declarations ----------------------------- */
-
 void PlayGame(Board board, Player starting_player);
 /* This function receives a board and a player whose turn it is to play.
 The function plays a game where the computer plays aginst itself, starting with starting_player.

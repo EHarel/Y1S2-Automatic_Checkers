@@ -23,6 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Q1Project</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Final Project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -146,24 +147,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameGeneral.c" />
+    <ClCompile Include="GameAuxiliary.c" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="Tree-Q1.c" />
+    <ClCompile Include="SingleMovesTree-Q1.c" />
     <ClCompile Include="ListMoves-Q2.c" />
     <ClCompile Include="ListOfLists-Q3.c" />
     <ClCompile Include="SingleTurn-Q4.c" />
     <ClCompile Include="PlayGame-Q7.c" />
-    <ClCompile Include="Tree.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeaderAuxiliary.h" />
-    <ClInclude Include="HeaderGeneral.h" />
+    <ClInclude Include="HeaderGameAuxiliary.h" />
+    <ClInclude Include="HeaderTurn.h" />
     <ClInclude Include="HeaderListOfLists.h" />
     <ClInclude Include="HeaderPlay.h" />
-    <ClInclude Include="HeaderQ1.h" />
     <ClInclude Include="HeaderListMoves.h" />
-    <ClInclude Include="HeaderTree.h" />
-    <ClInclude Include="MotherHeader.h" />
+    <ClInclude Include="HeaderSingleMovesTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

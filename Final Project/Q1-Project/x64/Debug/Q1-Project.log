@@ -1,10 +1,11 @@
-﻿  Tree.c
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Q1-Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   PlayGame-Q7.c
   SingleTurn-Q4.c
   ListOfLists-Q3.c
   ListMoves-Q2.c
-  Tree-Q1.c
-  GameGeneral.c
+  SingleMovesTree-Q1.c
+  Main.c
+  GameAuxiliary.c
   Generating Code...
-  Q1-Project.vcxproj -> C:\Users\DELL\Desktop\Final Project\x64\Debug\Q1-Project.exe
-  Q1-Project.vcxproj -> C:\Users\DELL\Desktop\Final Project\x64\Debug\Q1-Project.pdb (Full PDB)
+  Q1-Project.vcxproj -> C:\Users\DELL\Desktop\Final Project\x64\Debug\Final Project.exe
+  Q1-Project.vcxproj -> C:\Users\DELL\Desktop\Final Project\x64\Debug\Final Project.pdb (Full PDB)
