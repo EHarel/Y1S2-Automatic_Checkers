@@ -21,13 +21,22 @@
     <ClCompile Include="Tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Q1.c">
+    <ClCompile Include="Tree-Q1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Auxiliary.c">
+    <ClCompile Include="ListMoves-Q2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ListMoves.c">
+    <ClCompile Include="ListOfLists-Q3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTurn-Q4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameGeneral.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayGame-Q7.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,6 +51,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HeaderListMoves.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderListOfLists.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MotherHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderGeneral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderPlay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

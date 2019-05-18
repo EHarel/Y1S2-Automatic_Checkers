@@ -1,11 +1,15 @@
 #pragma once
 
+// #include "MotherHeader.h"
+
+#include <stdlib.h>
 #include "HeaderQ1.h"
 #include "HeaderListMoves.h"
 
 
 /* ----------------------------- Function Declarations ----------------------------- */
 
+void randomizeStartingPlayer(Player* player);
 void copyBoard(Board dest, Board src);
 void copyPos(checkersPos* dest, checkersPos* src);
 void generateStartingBoard(Board board);

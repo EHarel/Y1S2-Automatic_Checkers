@@ -1,11 +1,14 @@
 #pragma once
 
-//#include "MotherHeader.h"
-
 #include <stdlib.h>
 #include <stdio.h>
-#include "HeaderTree.h"
 
+#include "HeaderTree.h"
+#include "HeaderQ1.h"
+#include "HeaderListMoves.h"
+#include "HeaderListMoves.h"
+#include "HeaderListOfLists.h"
+#include "HeaderAuxiliary.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -21,14 +24,15 @@ If you move DOWN, the columns in the board matric increase (A, B, C).
 It's unintuitive if we view the board top-to-bottom.
 */
 
+#define TOP_PLAYER 'T'
+#define BOTTOM_PLAYER 'B'
+#define BOARD_SIZE	8
+#define EMPTY ' '
+
+typedef unsigned char Board[BOARD_SIZE][BOARD_SIZE];
+
+
+
+
 typedef unsigned char Player;
 typedef int BOOL;
-
-/* ----------------------------- Structs ----------------------------- */
-
-
-
-/* ----------------------------- Function Declarations ----------------------------- */
-
-SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos *src);
-

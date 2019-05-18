@@ -146,17 +146,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Auxiliary.c" />
+    <ClCompile Include="GameGeneral.c" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="Q1.c" />
-    <ClCompile Include="ListMoves.c" />
+    <ClCompile Include="Tree-Q1.c" />
+    <ClCompile Include="ListMoves-Q2.c" />
+    <ClCompile Include="ListOfLists-Q3.c" />
+    <ClCompile Include="SingleTurn-Q4.c" />
+    <ClCompile Include="PlayGame-Q7.c" />
     <ClCompile Include="Tree.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderAuxiliary.h" />
+    <ClInclude Include="HeaderGeneral.h" />
+    <ClInclude Include="HeaderListOfLists.h" />
+    <ClInclude Include="HeaderPlay.h" />
     <ClInclude Include="HeaderQ1.h" />
     <ClInclude Include="HeaderListMoves.h" />
     <ClInclude Include="HeaderTree.h" />
+    <ClInclude Include="MotherHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

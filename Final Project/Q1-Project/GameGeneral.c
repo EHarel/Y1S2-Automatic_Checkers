@@ -2,6 +2,15 @@
 
 #include "HeaderAuxiliary.h"
 
+void randomizeStartingPlayer(Player* player)
+{
+	// srand(time(NULL));
+
+	if (rand() % 2 == 0)
+		*player = TOP_PLAYER;
+	else
+		*player = BOTTOM_PLAYER;
+}//randomizeStartingPlayer
 
 void copyBoard(Board dest, Board src)
 {
@@ -36,7 +45,6 @@ void generateEmptyBoard(Board board)
 			board[i][j] = EMPTY;
 	}//for i
 }//generateStartingBoard
-
 
 void fillTopBoard(Board board)
 {
@@ -101,9 +109,9 @@ void printBoard(Board board)
 		return;
 	}
 
-	printf("+-+-+-+-+-+-+-+-+-+\n");
-	printf("+ |1|2|3|4|5|6|7|8|\n");
-	printf("+-+-+-+-+-+-+-+-+-+\n");
+	printf("+-+-+-+-+-+-+-+-+-+-+\n");
+	printf("+ |1|2|3|4|5|6|7|8| +\n");
+	printf("+-+-+-+-+-+-+-+-+-+-+\n");
 	for (i = 0; i < BOARD_SIZE; i++)
 	{
 		unsigned char row = 'A' + i;
@@ -112,14 +120,12 @@ void printBoard(Board board)
 		{
 			printf("%c|", board[i][j]);
 		}//for column
-		printf("\n+-+-+-+-+-+-+-+-+-+\n");
+		printf("%c|", row);
+		printf("\n+-+-+-+-+-+-+-+-+-+-+\n");
 	}//for row
-	printf("\n");
-	//printf("\n****************************\n\n");
+	printf("+ |1|2|3|4|5|6|7|8| +\n");
+	printf("+-+-+-+-+-+-+-+-+-+-+\n");
 }//printBoard
-
-
-
 
 void printList(SingleSourceMovesList* lst)
 {
